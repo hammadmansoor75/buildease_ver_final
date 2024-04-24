@@ -1,0 +1,28 @@
+.input-group{
+    display: flex;
+    margin-top: 10px;
+    align-items: center;
+    gap:10px
+}
+
+.label{
+    text-align: right;
+}
+
+.form-container{
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: inset;
+    background-color: white;
+}
+
+.main-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #32CD32;
+    grid-template-columns: 1fr 1fr;
+    gap:10px;
+    border-radius: 10px;
+    padding: 20px;
+}
