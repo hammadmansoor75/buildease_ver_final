@@ -29,6 +29,6 @@ export async function POST(
         
     } catch (error) {
         console.log("[PROJECTS_POST]",error)
-        return new NextResponse("Internal Error", {status : 500})
+        return new NextResponse("Internal Error", {status : 500});
     }
 }
