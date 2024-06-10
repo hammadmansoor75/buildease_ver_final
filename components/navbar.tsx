@@ -1,5 +1,5 @@
 import { UserButton, auth } from '@clerk/nextjs'
-import React from 'react'
+
 import MainNav from './main-nav'
 import ProjectSwitcher from './project-switcher'
 import { redirect } from 'next/navigation'
