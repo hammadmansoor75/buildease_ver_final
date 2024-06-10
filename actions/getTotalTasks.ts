@@ -7,5 +7,5 @@ export const getTotalTasks = async(projectId : string) => {
         }
     })
 
-    return task.length;
+    return task.length
 }
