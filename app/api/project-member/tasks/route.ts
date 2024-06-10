@@ -18,7 +18,7 @@ export async function PATCH(
             }
         })
 
-        return NextResponse.json(task)
+        return NextResponse.json(task);
 
 
     } catch (error) {
