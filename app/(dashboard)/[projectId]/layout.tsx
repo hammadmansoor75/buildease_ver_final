@@ -23,7 +23,7 @@ export default async function DasboardLayout({
     })
 
     if(!project){
-        redirect('/')
+        redirect('/');
     }
 
     return (
