@@ -20,7 +20,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #32CD32;
+    /* background-color: #32CD32; */
+    /* background: linear-gradient(45deg, #32CD32, #008000); */
+    background: radial-gradient(circle at center, #32CD32, #008000 70%);
     grid-template-columns: 1fr 1fr;
     gap:10px;
     border-radius: 10px;

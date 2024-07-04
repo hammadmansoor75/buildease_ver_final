@@ -34,11 +34,14 @@ const ConstructionCalculator = () => {
 
 
     const [totalPaint , setTotalPaint] = useState(0)
-     let CostPerCementBag = 1200;
+    //  let CostPerCementBag = 1200;
      let CostPerSandCubicFeet = 44;
      let CostPerAggregateCubicFeet = 170;
-     let CostPerKgofSteel =  230;
-     let CostPerBrick = 20;
+    //  let CostPerKgofSteel =  230;
+    //  let CostPerBrick = 20;
+     const [CostPerCementBag, SetCostPerCementBag] = useState(0);
+     const [CostPerKgOfSteel, SetCostPerKgOfSteel] = useState(0);
+     const [CostPerBrick, SetCostPerBrick] = useState(0);
      const [CementCost ,  setCementCost] = useState(0);
      const [SandCost ,  setSandCost] = useState(0);
      const [AggregateCost ,  setAggregateCost] = useState(0);
@@ -269,7 +272,7 @@ const handlePaintOptionChange = (event) => {
 const CalculateCostOfSteel = ()=>{
     
   const totalSteel= SlabResult.steel;
-  setSteetCost(totalSteel*CostPerKgofSteel);
+  setSteetCost(totalSteel*CostPerKgOfSteel);
   console.log("Cost of Steel:"  + SteelCost)
 }
 //calculate Bricks cost
@@ -509,6 +512,21 @@ const handleHouseTypeChange = (e : React.ChangeEvent<HTMLSelectElement>) => {
                   </SelectContent>
           </Select>
         </div>
+
+          <div className='input-group'>
+            <Label className='text-lg label'>Cost Per Brick:</Label>
+            <input className='border m-2 px-2 py-1 rounded-lg w-20 h-9' type="number" onChange={(e) => SetCostPerBrick(e.target.value)} />
+          </div>
+
+          <div className='input-group'>
+            <Label className='text-lg label'>Cost Per Kg of Steel:</Label>
+            <input className='border m-2 px-2 py-1 rounded-lg w-20 h-9' type="number" onChange={(e) => SetCostPerKgOfSteel(e.target.value)} />
+          </div>
+
+          <div className='input-group'>
+            <Label className='text-lg label'>Cost Per Cement Bag:</Label>
+            <input className='border m-2 px-2 py-1 rounded-lg w-20 h-9' type="number" onChange={(e) => SetCostPerCementBag(e.target.value)} />
+          </div>
 
           <div className='input-group'>
             <Label className='text-lg label'>

@@ -66,7 +66,7 @@ const App = () => {
       // Clear the floor plan data
       setFloorPlanData([]);
 
-      const response = await axios.post(`https://644b-115-186-57-250.ngrok-free.app/generate-floor-map`, { prompt:input });
+      const response = await axios.post(`https://cbb4-154-81-228-171.ngrok-free.app/generate-floor-map`, { prompt:input });
       console.log(response)
       setFloorPlanData(JSON.parse(response.data).results);
 

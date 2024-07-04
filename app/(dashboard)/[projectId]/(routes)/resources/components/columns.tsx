@@ -10,8 +10,8 @@ export type ResourcesColumn = {
   name: string
   status : string
   assignedToTeam : string | null,
-  assignedFrom : Date | null
-  assignedTill : Date | null
+  assignedFrom : string | null
+  assignedTill : string | null
 }
 
 export const columns: ColumnDef<ResourcesColumn>[] = [
