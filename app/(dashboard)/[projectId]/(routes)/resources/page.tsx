@@ -2,7 +2,16 @@ import React from 'react';
 import prismadb from '@/lib/prismadb';
 import ResourcesClient from './components/client';
 
-const Resources = ({ resources }) => {
+const Resources = async ({ params }) => {
+  const resources = await prismadb.resource.findMany({
+    where: {
+      projectId: params.projectId
+    },
+    orderBy: {
+      createdAt: "desc"
+    }
+  });
+
   const formattedResources = resources.map((item) => ({
     id: item.id,
     name: item.name,
@@ -19,24 +28,6 @@ const Resources = ({ resources }) => {
       </div>
     </div>
   );
-};
-
-export const getServerSideProps = async (context) => {
-  const { projectId } = context.params;
-  const resources = await prismadb.resource.findMany({
-    where: {
-      projectId: projectId
-    },
-    orderBy: {
-      createdAt: "desc"
-    }
-  });
-
-  return {
-    props: {
-      resources
-    }
-  };
 };
 
 export default Resources;
