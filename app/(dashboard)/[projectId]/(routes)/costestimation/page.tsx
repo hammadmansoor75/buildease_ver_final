@@ -82,7 +82,7 @@ const ConstructionCalculator = () => {
 
 
   
-    const [rooms, setRooms] = useState(1);
+    const [rooms, setRooms] = useState<number>(1);
     const [SlabResult , setSlabResult] = useState({cement:0,sand:0,aggregate:0,steel:0});
 
     // //area checks
@@ -439,6 +439,7 @@ const handleHouseTypeChange = (e : React.ChangeEvent<HTMLSelectElement>) => {
   setHouseType(e.target.value)
 }
 
+
     return (
         <div className="flex-1 space-y-4 p-8 pt-6 justify-center">
             <Heading title="Estimate Cost" description="Estimate your construction using our calculator"/>
@@ -465,7 +466,7 @@ const handleHouseTypeChange = (e : React.ChangeEvent<HTMLSelectElement>) => {
               </div>
       <div className="input-group">
                 <Label className='text-lg label'>Rooms:</Label>
-                <Select value={rooms} onValueChange={(value) => setRooms(Number(value))}>
+                <Select value={String(rooms)} onValueChange={(value) => setRooms(Number(value))}>
                   <SelectTrigger className='w-1/4 ml-9'>
                     <SelectValue placeholder={rooms}></SelectValue>
                   </SelectTrigger>
