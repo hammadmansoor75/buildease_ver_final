@@ -2,7 +2,7 @@
 import { Button } from '@/components/ui/button';
 import { Heading } from '@/components/ui/heading';
 import { Separator } from '@/components/ui/separator';
-import React, { useState , useEffect} from 'react';
+import React, { useState , useEffect, ChangeEvent} from 'react';
 import Item from './components/Item';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import CostItem from './components/CostItem';
@@ -13,13 +13,21 @@ import { Label } from '@/components/ui/label';
 import Image from 'next/image';
 import house from '@/images/house_cost.jpg'
 
+
+type RoomDimension = {
+  length : number,
+  width : number,
+  wallsvolume : number
+}
+
 const ConstructionCalculator = () => {
     // const [Rooms, setRoom0s] = useState(0);
     // const [unit, setUnit] = useState('Sqft');
     // const [houseType, setHouseType] = useState('LuxuryAplusplus');
     const [houseType, setHouseType] = useState('5 Marla');
     //rooms dimensions
-    const [roomDimensions, setRoomDimensions] = useState([]);
+    const [roomDimensions, setRoomDimensions] = useState<RoomDimension[]>([]);
+
     //covered area for  lanter
     const [coveredArea, setCoveredArea] = useState('50%');
     const [totalWallVolume , setTotalWallVolume] = useState(0);
@@ -97,22 +105,31 @@ const ConstructionCalculator = () => {
         totalArea = 0;
     }
 
-  const handleRoomDimensionChange = (index, dimension, value) => {
-    let newRoomDimensions = [...roomDimensions];
-    if (!newRoomDimensions[index]) {
-      newRoomDimensions[index] = { length: 0, width: 0, wallsVolume: 0 };
-    }
-    newRoomDimensions[index][dimension] = value;
+    
 
-    // Calculate walls volume when both length and width are available
-    if (newRoomDimensions[index].length && newRoomDimensions[index].width) {
-      newRoomDimensions[index].wallsVolume = ((2 * (newRoomDimensions[index].length * 12)) + (2 *( newRoomDimensions[index].width * 12)) )* 0.75;
-    }
-    // console.log("Wall Volume: "+index+" "+newRoomDimensions[index].wallsVolume);
-    setRoomDimensions(newRoomDimensions);
-    // console.log("Room Dimensions: "+ newRoomDimensions[index].length);
-  }
 
+    const handleRoomDimensionChange = (
+      index: number,
+      dimension: keyof RoomDimension,
+      value: number
+    ) => {
+      let newRoomDimensions = [...roomDimensions];
+    
+      if (!newRoomDimensions[index]) {
+        newRoomDimensions[index] = { length: 0, width: 0, wallsvolume : 0 };
+      }
+    
+      newRoomDimensions[index][dimension] = value;
+    
+      // Calculate walls volume when both length and width are available
+      if (newRoomDimensions[index].length && newRoomDimensions[index].width) {
+        newRoomDimensions[index].wallsvolume =
+          2 * (newRoomDimensions[index].length * 12) +
+          2 * (newRoomDimensions[index].width * 12) * 0.75;
+      }
+    
+      setRoomDimensions(newRoomDimensions);
+    };
 /*...*/
 
 
@@ -128,11 +145,11 @@ const ConstructionCalculator = () => {
 
     const [paintOption, setPaintOption] = useState(false);
 
-const handlePaintOptionChange = (event) => {
-  setPaintOption(event.target.checked);
-};
+    const handlePaintOptionChange = (event: ChangeEvent<HTMLInputElement>) => {
+      setPaintOption(event.target.checked);
+    };
 
-    const getRoomLimits = (houseType) => {
+    const getRoomLimits = (houseType : string) => {
       switch (houseType) {
         case '5 Marla':
           return { min: 2, max: 3 };
@@ -160,7 +177,7 @@ const handlePaintOptionChange = (event) => {
   const calculateTotalWallVolume = () =>{
     //map the roomDimension array
     const WallVolume = roomDimensions.reduce((total, room) => {
-      return total + room.wallsVolume;
+      return total + room.wallsvolume;
     }, 0);
     setTotalWallVolume(WallVolume);
     return WallVolume;
