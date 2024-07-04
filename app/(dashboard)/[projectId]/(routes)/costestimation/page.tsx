@@ -79,7 +79,7 @@ const ConstructionCalculator = () => {
 
     // //area checks
     const [errorMessage, setErrorMessage] = useState("");
-        let totalArea;
+        let totalArea : number;
     switch(houseType) {
       case '5 Marla':
         //272 sq ft for 1 marla
